@@ -12,8 +12,13 @@ public:
     };
 
     static void parseByte(uint8_t byte);
+    
+    static void setOnPacketReceived(void (*callback)(const RxPacket&));
 
 private:
+
+    static void (*m_onPacketReceivedCallback)(const RxPacket&);
+
     static uint8_t m_payloadBuffer[32];
     static RxState m_rxState;
     static uint8_t m_bytesToRead;

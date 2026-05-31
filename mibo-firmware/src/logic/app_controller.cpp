@@ -1,6 +1,11 @@
 // Created by elias on 20.05.26.
 #include "app_controller.h"
 #include <cstring>
+#include <packet_handler.h>
+
+void AppController::init() {
+    PacketHandler::setOnPacketReceived(AppController::onPacketReceived);
+}
 
 void AppController::onPacketReceived(const RxPacket& packet) {
     switch (packet.cmd) {
