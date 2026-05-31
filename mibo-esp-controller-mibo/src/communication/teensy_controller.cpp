@@ -8,7 +8,7 @@ void TeensyController::begin() {
     Serial1.begin(115200);
 }
 
-void TeensyController::write(const std::uint8_t* data, size_t size) {
+void TeensyController::write(const std::uint8_t* data, const size_t size) {
     if (data != nullptr && size > 0) {
         Serial1.write(data, size);
     }

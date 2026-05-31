@@ -3,6 +3,7 @@
 //
 
 #include "esp_now_controller.h"
+#include "packet_forwarder.h"
 #include "teensy_controller.h"
 
 void setup() {
@@ -11,5 +12,5 @@ void setup() {
 }
 
 void loop() {
-
+    PacketForwarder::update();
 }

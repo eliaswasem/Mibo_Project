@@ -18,14 +18,13 @@ void ESPNowController::init() {
     digitalWrite(WIFI_ANT_CONFIG, HIGH);
 
     // 2. Initialize Non-Volatile Storage (NVS) to prevent Wi-Fi crashes
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+    if (const esp_err_t ret = nvs_flash_init(); ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         nvs_flash_erase();
         nvs_flash_init();
     }
 
     // Initialize the Wi-Fi in Station (STA) mode.
-    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    const wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     esp_wifi_init(&cfg);
     esp_wifi_set_storage(WIFI_STORAGE_RAM); // Protects flash memory from wear
     esp_wifi_set_mode(WIFI_MODE_STA);
@@ -64,19 +63,19 @@ void ESPNowController::init() {
     esp_now_set_peer_rate_config(ESP_MAC_ADDRESS, &rateConfig);
 }
 
-void ESPNowController::send(const uint8_t *data, std::size_t len) {
+void ESPNowController::send(const uint8_t *data, const std::size_t len) {
     if (data != nullptr) {
         esp_now_send(ESP_MAC_ADDRESS, data, len);
     }
 }
 
-void ESPNowController::onDataReceive(const esp_now_recv_info_t *recvInfo, const uint8_t *data, int len) {
+void ESPNowController::onDataReceive(const esp_now_recv_info_t *recvInfo, const uint8_t *data, const int len) {
     if (data != nullptr && len > 0 && recvInfo != nullptr && recvInfo->rx_ctrl != nullptr) {
 
 
         // ------------------------- DEBUG -----------------------------
         // Extract Received Signal Strength Indicator (RSSI) in dBm
-        int16_t rssi = recvInfo->rx_ctrl->rssi;
+        const int rssi = recvInfo->rx_ctrl->rssi;
 
         // Log diagnostics for antenna alignment and field testing
         Serial.print("Packet received on Ch1! RSSI: ");
