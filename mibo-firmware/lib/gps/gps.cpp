@@ -28,10 +28,10 @@ double GPS::getLng() {
     return gps.location.lng();
 }
 
-double GPS::distanceTo(double destLat, double destLng) {
+double GPS::distanceTo(const double destLat, const double destLng) {
     return TinyGPSPlus::distanceBetween(gps.location.lat(), gps.location.lng(), destLat, destLng);
 }
 
-double GPS::courseTo(double destLat, double destLng) {
+double GPS::courseTo(const double destLat, const double destLng) {
     return TinyGPSPlus::courseTo(gps.location.lat(), gps.location.lng(), destLat, destLng);
 }

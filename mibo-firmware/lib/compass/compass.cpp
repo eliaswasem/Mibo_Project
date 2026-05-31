@@ -40,7 +40,7 @@ float Compass::getYaw() {
     }
 
     // Standard 2D angle calculation
-    float yaw = std::atan2(y, x);
+    const float yaw = std::atan2(y, x);
     float yawDegrees = yaw * 180.0f / static_cast<float>(M_PI);
 
     if (yawDegrees < 0) {
@@ -61,12 +61,12 @@ float Compass::getPitch() {
     }
 
     // Apply manual 3D offsets
-    float x = rawX - offsetX;
-    float y = rawY - offsetY;
-    float z = rawZ - offsetZ;
+    const float x = rawX - offsetX;
+    const float y = rawY - offsetY;
+    const float z = rawZ - offsetZ;
 
     // Calculate vertical pitch relative to the total horizontal field strength
-    float pitch = std::atan2(-x, std::sqrt(y * y + z * z));
+    const float pitch = std::atan2(-x, std::sqrt(y * y + z * z));
 
     return pitch * 180.0f / static_cast<float>(M_PI);
 }
@@ -82,13 +82,13 @@ float Compass::getHeading() {
     }
 
     // Apply all three manual calibration offsets
-    float x = rawX - offsetX;
-    float y = rawY - offsetY;
-    float z = rawZ - offsetZ;
+    const float x = rawX - offsetX;
+    const float y = rawY - offsetY;
+    const float z = rawZ - offsetZ;
 
     // Generate pitch and roll transformation matrices in radians
-    float pitchRad = std::atan2(-x, std::sqrt(y * y + z * z));
-    float rollRad  = std::atan2(y, z);
+    const float pitchRad = std::atan2(-x, std::sqrt(y * y + z * z));
+    const float rollRad  = std::atan2(y, z);
 
     // Guard against vertical gimbal lock limits
     if (std::abs(pitchRad) >= (M_PI / 2.0)) {
@@ -96,15 +96,15 @@ float Compass::getHeading() {
     }
 
     // Flatten vectors using tilt-compensation matrix mapping
-    float compX = x * std::cos(pitchRad) + z * std::sin(pitchRad);
-    float compY = x * std::sin(rollRad) * std::sin(pitchRad) + y * std::cos(rollRad) - z * std::sin(rollRad) * std::cos(pitchRad);
+    const float compX = x * std::cos(pitchRad) + z * std::sin(pitchRad);
+    const float compY = x * std::sin(rollRad) * std::sin(pitchRad) + y * std::cos(rollRad) - z * std::sin(rollRad) * std::cos(pitchRad);
 
     if (std::abs(compX) < 0.001f && std::abs(compY) < 0.001f) {
         return -1.0f;
     }
 
     // Compute final tilt-corrected magnetic course
-    float heading = std::atan2(compY, compX);
+    const float heading = std::atan2(compY, compX);
     float headingDegrees = heading * 180.0f / static_cast<float>(M_PI);
 
     if (headingDegrees < 0) {

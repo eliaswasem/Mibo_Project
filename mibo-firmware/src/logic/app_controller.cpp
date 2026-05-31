@@ -12,7 +12,7 @@ void AppController::onPacketReceived(const RxPacket& packet) {
 
         case Packet::SPEED: {
             if (packet.dataLen == sizeof(SpeedPayload)) {
-                SpeedPayload payload;
+                SpeedPayload payload{};
                 std::memcpy(&payload, packet.data, sizeof(SpeedPayload));
             }
             break;
@@ -24,8 +24,8 @@ void AppController::onPacketReceived(const RxPacket& packet) {
 
         case Packet::GOTO: {
             if (packet.dataLen == sizeof(GotoPayload)) {
-                GotoPayload payload;
-                // Copies bytes to a aligned memory structure to prevent architecture alignment faults
+                GotoPayload payload{};
+                // Copies bytes to an aligned memory structure to prevent architecture alignment faults
                 std::memcpy(&payload, packet.data, sizeof(GotoPayload));
             }
             break;

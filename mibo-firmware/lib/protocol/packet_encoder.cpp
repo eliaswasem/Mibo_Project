@@ -6,7 +6,7 @@
 thread_local uint8_t PacketEncoder::m_sendBuffer[PacketEncoder::BUFFER_SIZE] = {0};
 
 const uint8_t* PacketEncoder::encode(Packet cmd, const void* payloadData, size_t payloadSize) {
-    int16_t expectedSize = getPayloadSize(cmd);
+    const int16_t expectedSize = getPayloadSize(cmd);
     if (expectedSize < 0) return nullptr;
 
     m_sendBuffer[0] = PROTOCOL_START;

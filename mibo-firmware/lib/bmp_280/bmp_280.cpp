@@ -9,7 +9,7 @@ static Adafruit_BMP280 bmp;
 
 bool BMP280::init() {
     // Teensy 4.1 standard use Pin 19 (SCL)and Pin 18 (SDA)
-    // 0x77 is Standard-I2C-Adresse (some boards use 0x76)
+    // 0x77 is Standard-I2C-Address (some boards use 0x76)
     if (!bmp.begin(0x77)) {
         return false;
     }

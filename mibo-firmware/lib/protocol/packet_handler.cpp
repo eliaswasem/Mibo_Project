@@ -25,7 +25,7 @@ void PacketHandler::parseByte(uint8_t byte) {
         case RxState::READ_CMD: {
             m_currentCmd = static_cast<Packet>(byte);
 
-            int16_t payloadSize = getPayloadSize(m_currentCmd);
+            const int16_t payloadSize = getPayloadSize(m_currentCmd);
             if (payloadSize < 0) {
                 m_rxState = RxState::WAIT_START;
                 break;
@@ -50,7 +50,7 @@ void PacketHandler::parseByte(uint8_t byte) {
 
         case RxState::READ_CRC:
             if (byte == m_calculatedCrc) {
-                RxPacket packet{m_currentCmd, m_payloadBuffer, m_bytesToRead};
+                const RxPacket packet{m_currentCmd, m_payloadBuffer, m_bytesToRead};
                 if (m_onPacketReceivedCallback != nullptr) {
                     m_onPacketReceivedCallback(packet);
                 }

@@ -30,7 +30,7 @@ float Ultrasonic::getDistance(const UltrasonicSensorID id) {
     delayMicroseconds(10);
     digitalWrite(trigPin, LOW);
 
-    u_long duration = pulseInLong(echoPin, HIGH, 30000); // 30ms timeout
+    const u_long duration = pulseInLong(echoPin, HIGH, 30000); // 30ms timeout
 
     if (duration == 0) {
         return 400.0f; // 400 means no obstacle
