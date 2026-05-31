@@ -5,3 +5,6 @@
 
 ## Wiring
 [Wiring](Wiring.md)
+
+## Packet Protocol
+[Protocol](Protocol.md)

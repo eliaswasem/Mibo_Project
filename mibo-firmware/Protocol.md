@@ -1,4 +1,4 @@
-# ESP ↔ Teensy Robust UART Protocol (No-LEN Binary Control Link)
+# ESP ↔ Teensy UART Protocol (Binary Control Link)
 
 ---
 
