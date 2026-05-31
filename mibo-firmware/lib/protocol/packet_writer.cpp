@@ -1,7 +1,7 @@
 // Created by elias on 20.05.26.
 #include "packet_writer.h"
 
-#include "../esp_controller/esp_controller.h"
+#include <esp_controller.h>
 #include "protocol.h"
 
 void PacketWriter::write_packet(const uint8_t* buffer) {
