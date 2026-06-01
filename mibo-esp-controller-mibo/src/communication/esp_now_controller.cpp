@@ -55,10 +55,10 @@ void ESPNowController::init() {
 
     // Tune for long distance
     wifi_tx_rate_config_t rateConfig = {};
-    rateConfig.phymode = WIFI_PHY_MODE_11B;  // Long-range legacy 802.11b mode
-    rateConfig.rate    = WIFI_PHY_RATE_1M_L; // Force 1 Mbps rate for maximum receiver sensitivity
-    rateConfig.ersu    = true;               // Enable Extended Range Single User mode for ESP32-C6
-    rateConfig.dcm     = false;
+    rateConfig.phymode = WIFI_PHY_MODE_11AX;        // New Wifi 6 long-range mode
+    rateConfig.rate    = WIFI_PHY_RATE_MCS0_LPC;    // Set rate to MCS0 (Most robust modulation, lowest data rate for high sensitivity)
+    rateConfig.ersu    = true;                      // Enable Extended Range Single User mode for ESP32-C6
+    rateConfig.dcm     = true;                      // Enable Dual Carrier Modulation (Duplicates signal against multipath fading)
 
     esp_now_set_peer_rate_config(ESP_MAC_ADDRESS, &rateConfig);
 }
