@@ -3,7 +3,7 @@
 TinyGPSPlus GPS::gps;
 
 void GPS::begin() {
-    Serial1.begin(9600); // TX 1 RX 0
+    Serial1.begin(115200); // TX 1 RX 0
 }
 
 void GPS::update() {
