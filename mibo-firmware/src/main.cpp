@@ -15,6 +15,7 @@ void setup() {
 }
 
 void loop() {
+    Motors::update();
     GPS::update();
     ESPController::update();
 }

@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include <cmath>
 #include <cstdint>
 
 class Motors {
@@ -19,17 +20,33 @@ class Motors {
     static constexpr uint8_t SPEED_MAX = 255;
     static constexpr uint8_t SPEED_DEFAULT = 150;
 
+    static constexpr uint8_t SPEED_1M_MS = 1; // Time in milliseconds for 1 metre
+    static constexpr uint8_t SPEED_1D_MS = 1; // Time in milliseconds for 1 degree
+
     static uint8_t motorSpeed;
     static uint8_t innerSpeed;
 
 public:
+    static uint32_t targetTime;
+
+    static bool isMoving;
+
     static void init();
-    static void drive_forward();
-    static void turn_right();
-    static void drive_right();
-    static void drive_backwards();
-    static void turn_left();
-    static void drive_left();
+
+    static void update();
+
+    static void drive_forward(float_t metres);
+    static void turn_right(uint16_t degrees);
+
+    static void curve_right(float_t metres);
+
+    static void drive_right(float_t metres);
+    static void drive_backwards(float_t metres);
+    static void turn_left(uint16_t degrees);
+
+    static void curve_left(float_t metres);
+
+    static void drive_left(float_t metres);
     static void stop();
-    static void set_motor_speed(int speed);
+    static void set_motor_speed(uint8_t speed);
 };
