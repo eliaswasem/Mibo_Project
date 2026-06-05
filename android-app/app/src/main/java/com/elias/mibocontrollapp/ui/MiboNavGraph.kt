@@ -7,11 +7,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.elias.mibocontrollapp.ui.screens.HomeScreen
+import com.elias.mibocontrollapp.ui.screens.ManualControllScreen
 import com.elias.mibocontrollapp.viewmodel.MiboViewmodel
 
 object Routes {
 
     const val HOME = "home"
+    const val MANUAL = "manual"
 
 }
 @Composable
@@ -29,6 +31,9 @@ fun MiboNavGraph(
     ) {
         composable(Routes.HOME) {
             HomeScreen()
+        }
+        composable(Routes.MANUAL) {
+            ManualControllScreen()
         }
     }
 }

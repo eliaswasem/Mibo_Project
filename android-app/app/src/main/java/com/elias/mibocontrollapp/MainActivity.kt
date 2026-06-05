@@ -52,20 +52,22 @@ class MainActivity : ComponentActivity() {
                                 icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
                                 label = { Text(stringResource(R.string.label_home)) }
                             )
-                            /*
+
                             NavigationBarItem(
-                                selected = currentRoute == Routes.DAY,
+                                selected = currentRoute == Routes.MANUAL,
                                 onClick = {
-                                    if (currentRoute != Routes.DAY) {
-                                        navController.navigate(Routes.DAY) {
+                                    if (currentRoute != Routes.MANUAL) {
+                                        navController.navigate(Routes.MANUAL) {
                                             launchSingleTop = true
                                             restoreState = true
                                         }
                                     }
+                                    // Todo: Implement sending Mode change Packet
                                 },
-                                icon = { Icon(Icons.Default.Cloud, contentDescription = "Day") },
-                                label = { Text(stringResource(R.string.label_day)) }
+                                icon = { Icon(Icons.Default.DirectionsCar, contentDescription = "Manual") },
+                                label = { Text(stringResource(R.string.label_manual)) }
                             )
+                            /*
                             NavigationBarItem(
                                 selected = currentRoute == Routes.WEEK,
                                 onClick = {
