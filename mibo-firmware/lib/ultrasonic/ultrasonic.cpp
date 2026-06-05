@@ -33,7 +33,7 @@ float Ultrasonic::getDistance(const UltrasonicSensorID id) {
     const u_long duration = pulseInLong(echoPin, HIGH, 30000); // 30ms timeout
 
     if (duration == 0) {
-        return 400.0f; // 400 means no obstacle
+        return NAN; // NAN means no obstacle
     }
     return static_cast<float>(duration) * 0.0343f / 2.0f;
 }
